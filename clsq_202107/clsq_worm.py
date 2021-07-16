@@ -89,7 +89,7 @@ def do_item_opera(in_tagUrl, in_tagTitle):
 
 # start program
 endpoint = "https://cl.ee87.xyz/"
-url = endpoint + "thread0806.php?fid=7&page=1"
+url = endpoint + "thread0806.php?fid=7&page=2"
 print(url)
 html_info = fetch_html_info(url)
 soup = BeautifulSoup(html_info, features="html.parser")
