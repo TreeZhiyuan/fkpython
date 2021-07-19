@@ -126,4 +126,6 @@ def do_item_opera(in_tagUrl, in_tagTitle):
 #         break
 
 # do_item_opera('https://cl.ee87.xyz/htm_data/2107/7/4597183.html', '[方寸之间]方寸之间有绝美的风景，男人的梦想之地，绝美的嫩b～161期[100P]')
-do_item_opera('https://cl.ee87.xyz/htm_data/2107/7/4590178.html', '[极品动图]值得慢慢欣赏，反复观看的动图！第94期[100P]')
+# do_item_opera('https://cl.ee87.xyz/htm_data/2107/7/4590178.html', '[极品动图]值得慢慢欣赏，反复观看的动图！第94期[100P]')
+# do_item_opera('https://cl.ee87.xyz/htm_data/2106/7/4547678.html', '就是爱双飞，就算忙不过来，也要双飞[30P]')
+do_item_opera('https://cl.ee87.xyz/htm_data/2107/7/4597223.html', '个人收集的动图，希望大家喜欢！193期[66P]')

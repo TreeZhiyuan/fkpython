@@ -3,7 +3,7 @@ import htmlUtil
 from bs4 import BeautifulSoup
 
 # start program
-pageCount = 4
+pageCount = 1
 endpoint = 'https://cl.ee87.xyz/'
 pageNo = 1
 while pageNo <= pageCount:

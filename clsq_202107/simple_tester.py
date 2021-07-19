@@ -3,6 +3,8 @@ import random
 import re
 from bs4 import BeautifulSoup
 import common
+import htmlUtil
+import time
 
 go = False
 if go:
@@ -31,3 +33,12 @@ if go:
 
 print('a b c'.split(' ', 1)[1])
 print(common.get_name_from_url('https://x6img.com/i/2021/07/12/vnknlo.gif'))
+
+# print(htmlUtil.fetch_html_info('https://cl.ee87.xyz/htm_data/2106/7/4547021.html'))
+print(time.strftime("%Y-%m-%d%H:%M:%S", time.localtime()))
+home_path = common.get_home_path()
+files1 = os.listdir(home_path)
+files1.sort(key=lambda path1: time.ctime(os.path.getmtime(common.get_home_path() + os.path.sep + path1)))
+print(files1)
+for item in files1:
+    print(time.ctime(os.path.getmtime(common.get_home_path() + os.path.sep + item)))

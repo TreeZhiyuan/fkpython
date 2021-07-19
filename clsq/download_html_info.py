@@ -2,6 +2,7 @@ import htmlUtil
 import common
 import os
 from bs4 import BeautifulSoup
+import time
 
 
 def get_txt_file_paths():
@@ -25,7 +26,6 @@ def get_txt_file_content(txtFilePath):
 
 def download_html_infos(d_html_url, d_html_path):
     item_html_info = htmlUtil.fetch_html_info(d_html_url)
-    print(item_html_info)
     item_soup = BeautifulSoup(item_html_info, features="html.parser")
     links = item_soup.findAll("link")
     for link in links:
@@ -39,24 +39,25 @@ def download_html_infos(d_html_url, d_html_path):
             script["src"] = "https:" + src
     with open(d_html_path, "wb") as f_output:
         f_output.write(item_soup.prettify("gbk"))
+        f_output.flush()
     f_output.close()
 
 
 for path in get_txt_file_paths():
     for txt in get_txt_file_content(path):
-        print(txt)
         a = txt.split(' ', 1)
         html_url = a[0]
         if '?' in html_url:
-            print(html_url)
+            print('不予处理', html_url)
         else:
             html_name = common.get_name_from_url(html_url)
-            file_name = common.filename_filter(a[1][:61])
+            file_name = common.filename_filter(a[1][:31])
             my_tag_path = common.get_home_path() + os.path.sep + file_name
             if not os.path.exists(my_tag_path):
                 os.makedirs(my_tag_path)
             html_path = my_tag_path + os.path.sep + html_name
-            if os.path.exists(html_path):
+            if os.path.exists(html_path) and os.path.getsize(html_path) > 0:
                 print('already exists')
             else:
+                print('需要下载的html', file_name, html_url)
                 download_html_infos(html_url, html_path)
