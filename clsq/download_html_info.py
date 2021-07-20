@@ -1,8 +1,7 @@
-import htmlUtil
-import common
 import os
+import common
+import htmlUtil
 from bs4 import BeautifulSoup
-import time
 
 
 def get_txt_file_paths():
@@ -13,6 +12,7 @@ def get_txt_file_paths():
         txt_file_path = home_path + os.path.sep + file.title()
         if os.path.isfile(txt_file_path):
             paths.append(txt_file_path)
+    print('get_txt_file_paths', paths)
     return paths
 
 
@@ -51,7 +51,7 @@ for path in get_txt_file_paths():
             print('不予处理', html_url)
         else:
             html_name = common.get_name_from_url(html_url)
-            file_name = common.filename_filter(a[1][:31])
+            file_name = common.filename_filter(a[1][:61])
             my_tag_path = common.get_home_path() + os.path.sep + file_name
             if not os.path.exists(my_tag_path):
                 os.makedirs(my_tag_path)

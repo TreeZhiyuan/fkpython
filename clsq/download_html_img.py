@@ -19,8 +19,8 @@ def download_img_in_html(in_file_path):
             non_html_file_count += 1
     html_soup = BeautifulSoup(html_info, features="html.parser")
     imgs = html_soup.findAll(lambda item: item.has_attr('iyl-data') and item.has_attr('ess-data'))
-    print('html 一共包含： ', len(imgs), '张图片')
-    print('已下载： ', non_html_file_count, '张图片')
+    print(in_file_path, ': html 一共包含', len(imgs), '张图片')
+    print(',已下载', non_html_file_count, '张图片')
     tasks = []
     if len(imgs) > non_html_file_count:
         for img in imgs:
@@ -33,16 +33,22 @@ def download_img_in_html(in_file_path):
             break
 
 
+specific = False
 pool = ThreadPoolExecutor(20, 'thread_name_prefix_')
-index = 0
-count = 10
-home_path = common.get_home_path()
-files = os.listdir(home_path)
-files.sort(key=lambda item: os.path.getctime(common.get_home_path() + os.path.sep + item), reverse=True)
-for file in files:
-    file_path = home_path + os.path.sep + file.title()
-    if not os.path.isfile(file_path):
-        download_img_in_html(file_path)
-        index += 1
-        if index >= count:
-            break
+if not specific:
+    index = 0
+    count = 5
+    home_path = common.get_home_path()
+    files = os.listdir(home_path)
+    files.sort(key=lambda item: os.path.getctime(common.get_home_path() + os.path.sep + item), reverse=True)
+    for file in files:
+        file_path = home_path + os.path.sep + file.title()
+        if not os.path.isfile(file_path):
+            download_img_in_html(file_path)
+            index += 1
+            if index >= count:
+                break
+else:
+    const_path = 'D:\\atp_workspace\\pyfkclsq'
+    in_file_path = const_path + os.path.sep + '[老衲精图] 「老衲爱少妇 · NO46-60」风里、雨里、少妇等你！！！[192P]'
+    download_img_in_html(in_file_path)
