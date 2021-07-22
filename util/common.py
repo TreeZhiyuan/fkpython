@@ -8,7 +8,7 @@ windows环境创建目录不允许部分特殊字符
 
 
 def filename_filter(filename):
-    filename = re.sub('[/:*?"<>|.\\n]', '', filename)
+    filename = re.sub('[/:*?"<>| .\\n]', '', filename)
     return filename
 
 

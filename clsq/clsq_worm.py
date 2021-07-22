@@ -3,10 +3,11 @@ import htmlUtil
 from bs4 import BeautifulSoup
 
 # start program
-pageCount = 1
-endpoint = 'https://cl.ee87.xyz/'
+count = 4
+index = 0
+endpoint = 'https://cl.337x.xyz/'
 pageNo = 1
-while pageNo <= pageCount:
+while index <= count:
     url = endpoint + 'thread0806.php?fid=7&page=' + str(pageNo)
     html_info = htmlUtil.fetch_html_info(url)
     soup = BeautifulSoup(html_info, features='html.parser')
@@ -19,3 +20,4 @@ while pageNo <= pageCount:
         datas.append(tagUrl + " " + tagTitle)
     common.write_file_info(txtFilepath, datas)
     pageNo += 1
+    index += 1

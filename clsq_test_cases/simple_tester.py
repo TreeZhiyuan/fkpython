@@ -28,17 +28,24 @@ if go:
         file.writelines(title['href'] + " " + title.text + "\n")
     print(file.read())
     file.close()
+    print('a b c'.split(' ', 1)[1])
+    print(common.get_name_from_url('https://x6img.com/i/2021/07/12/vnknlo.gif'))
+
+    # print(htmlUtil.fetch_html_info('https://cl.ee87.xyz/htm_data/2106/7/4547021.html'))
+    print(time.strftime("%Y-%m-%d%H:%M:%S", time.localtime()))
+    home_path = common.get_home_path()
+    files1 = os.listdir(home_path)
+    files1.sort(key=lambda path1: time.ctime(os.path.getmtime(common.get_home_path() + os.path.sep + path1)))
+    print(files1)
+    for item in files1:
+        print(time.ctime(os.path.getmtime(common.get_home_path() + os.path.sep + item)))
 # https://cl.ee87.xyz/read.php?tid=4593740 [搞笑GIF段子]姑娘，你是干嘛了，膝盖受这么重的伤
 # https://cl.ee87.xyz/htm_data/2107/7/4596293.html 有种诱惑，叫低腰裤[ 80P]
 
-print('a b c'.split(' ', 1)[1])
-print(common.get_name_from_url('https://x6img.com/i/2021/07/12/vnknlo.gif'))
 
-# print(htmlUtil.fetch_html_info('https://cl.ee87.xyz/htm_data/2106/7/4547021.html'))
-print(time.strftime("%Y-%m-%d%H:%M:%S", time.localtime()))
-home_path = common.get_home_path()
-files1 = os.listdir(home_path)
-files1.sort(key=lambda path1: time.ctime(os.path.getmtime(common.get_home_path() + os.path.sep + path1)))
-print(files1)
-for item in files1:
-    print(time.ctime(os.path.getmtime(common.get_home_path() + os.path.sep + item)))
+html_info = htmlUtil.fetch_html_info('https://cl.337x.xyz/read.php?tid=4604564')
+print(html_info)
+soup = BeautifulSoup(html_info, features="html.parser")
+meta = soup.findAll(lambda _item: _item.has_attr('href') and _item.name == 'a')
+target = meta[(len(meta) - 1)]
+print(target['href'])
