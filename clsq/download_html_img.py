@@ -41,7 +41,7 @@ specific = False
 pool = ThreadPoolExecutor(25, 'thread_name_prefix_')
 if not specific:
     index = 0
-    count = 10
+    count = 5
     home_path = common.get_home_path()
     files = os.listdir(home_path)
     files.sort(key=lambda item: os.path.getctime(common.get_home_path() + os.path.sep + item), reverse=True)
