@@ -47,7 +47,7 @@ def download_html_infos(d_html_url, d_html_path):
         f_output.close()
 
 
-download_text_path = common.get_home_path() + os.path.sep + 'download.txt'
+download_text_path = common.get_home_path() + os.path.sep + 'download_hsxs.txt'
 for txt in get_txt_file_content(download_text_path):
     a = txt.split(' ', 1)
     html_url = a[0]
@@ -65,12 +65,12 @@ for txt in get_txt_file_content(download_text_path):
             target = meta[(len(meta) - 1)]
             _html_url = _endpoint['href'] + '/' + target['href']
             html_name = common.get_name_from_url(_html_url)
-            html_path = my_tag_path + os.path.sep + html_name
+            html_path = my_tag_path + os.path.sep + 'novels' + os.path.sep + html_name
             download_html_infos(_html_url, html_path)
         else:
             print('解析失败', html_url)
 
     else:
         html_name = common.get_name_from_url(html_url)
-        html_path = my_tag_path + os.path.sep + html_name
+        html_path = my_tag_path + os.path.sep + 'novels' + os.path.sep + html_name
         download_html_infos(html_url, html_path)

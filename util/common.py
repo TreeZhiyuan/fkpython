@@ -54,8 +54,23 @@ def get_title_txt_file_path(pageNo):
     return get_home_path() + os.path.sep + 'clsp_titles_' + pageNo + '.txt'
 
 
+def get_title_txt_file_path_hsxs():
+    return get_home_path() + os.path.sep + 'clsp_titles_wx.txt'
+
+
 def write_file_info(file_path, datas):
     file = open(file=file_path, mode='w+', encoding='utf-8')
     for data in datas:
         file.writelines(data + "\n")
     file.close()
+
+
+def write_file_info_append(file_path, datas):
+    file = open(file=file_path, mode='a', encoding='utf-8')
+    for data in datas:
+        file.writelines(data + "\n")
+    file.close()
+
+
+def remove_file(file_path):
+    os.remove(file_path)

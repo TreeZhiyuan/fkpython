@@ -1,3 +1,4 @@
+import random
 from concurrent.futures import ThreadPoolExecutor
 from bs4 import BeautifulSoup
 import htmlUtil
@@ -30,11 +31,8 @@ def download_img_in_html(in_file_path):
             for img in imgs:
                 img_url = img['ess-data']
                 img_path = in_file_path + os.path.sep + common.get_name_from_url(img_url)
-                tasks.append(pool.submit(htmlUtil.download_image, img_path, img_url))
-        for task in tasks:
-            if not task.done():
-                time.sleep(10)
-                break
+                htmlUtil.download_image(img_path, img_url)
+                time.sleep(random.random() * 60)
 
 
 specific = False
@@ -42,9 +40,10 @@ pool = ThreadPoolExecutor(25, 'thread_name_prefix_')
 if not specific:
     index = 0
     count = 10
-    home_path = common.get_home_path()
+    home_path = common.get_home_path() + os.path.sep + 'posts'
     files = os.listdir(home_path)
-    files.sort(key=lambda item: os.path.getctime(common.get_home_path() + os.path.sep + item), reverse=True)
+    files.sort(key=lambda item: os.path.getctime(common.get_home_path() + os.path.sep + 'posts' + os.path.sep + item),
+               reverse=True)
     for file in files:
         file_path = home_path + os.path.sep + file.title()
         if not os.path.isfile(file_path):
